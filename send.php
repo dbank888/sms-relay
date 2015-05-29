@@ -4,9 +4,7 @@ require "twilio-php-master/Services/Twilio.php";
 require_once "config.php";
 
 
-
-
-$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
+$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE, 3306);
 
 if($mysqli->connect_error) {
     error_log("Can't connect to Database. Error:" . $mysqli->connect_error);
