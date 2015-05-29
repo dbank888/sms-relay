@@ -6,18 +6,18 @@ require_once "config.php";
 
 
 
-$mysqli = new mysqli($HOST, $USER, $PASSWORD, $DATABASE);
-$client = new Services_Twilio($ACCOUNT_SID, $AUTH_TOKEN);
+$mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
+$client = new Services_Twilio(ACCOUNT_SID, AUTH_TOKEN);
 
 $target = "ryan"; // temp set static target
-if($_REQUEST['To'] == $US_NUMBER) {
-    $outboundNumber = $FRENCH_NUMBER;
+if($_REQUEST['To'] == US_NUMBER) {
+    $outboundNumber = FRENCH_NUMBER;
     $targetPhone = "french_phone";
-} else if($_REQUEST['To'] == $FRENCH_NUMBER) {
-    $outboundNumber = $US_NUMBER;
+} else if($_REQUEST['To'] == FRENCH_NUMBER) {
+    $outboundNumber = US_NUMBER;
     $targetPhone = "us_phone";
 } else {
-    error_log("MSG received on unknown phone number. Number: ".$_REQUEST['To']. " Expected: ".$FRENCH_NUMBER );
+    error_log("MSG received on unknown phone number. Number: ".$_REQUEST['To']. " Expected: ".FRENCH_NUMBER );
     $mysqli->close();
     exit(1); //Kill the program if source can't be reliably confirmed
 }
