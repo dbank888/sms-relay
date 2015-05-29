@@ -17,7 +17,8 @@ if($_REQUEST['To'] == $US_NUMBER) {
     $outboundNumber = $US_NUMBER;
     $targetPhone = "us_phone";
 } else {
-    error_log("MSG received on unknown phone number. Number: ".$_REQUEST['To']);
+    error_log("MSG received on unknown phone number. Number: ".$_REQUEST['To']. " Expected: ".$FRENCH_NUMBER );
+    $mysqli->close();
     exit(1); //Kill the program if source can't be reliably confirmed
 }
 
@@ -29,6 +30,8 @@ if($result = $mysqli->query("SELECT ".$targetPhone." FROM users WHERE handle=".$
     echo $mysqli->error;
     error_log($mysqli->error);
 }
+
+$mysqli->close();
 
 try {
     $message = $client->account->messages->create(array(
