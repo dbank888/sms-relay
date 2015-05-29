@@ -8,8 +8,8 @@ require_once "config.php";
 
 $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
 
-if(!$mysqli) {
-    error_log("Can't connect to Database");
+if($mysqli->connect_error) {
+    error_log("Can't connect to Database. Error:" . $mysqli->connect_error);
     exit(1);
 }
 
