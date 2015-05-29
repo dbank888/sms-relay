@@ -1,0 +1,14 @@
+<?php
+//Twilio Settings
+// find your AccountSid and AuthToken from www.twilio.com/user/account
+define("ACCOUNT_SID", "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+define("AUTH_TOKEN", "YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+define("US_NUMBER", "+1XXXXXXXXXX");
+define("FRENCH_NUMBER", "+33XXXXXXXXX");
+
+
+//Database Settings
+define("HOST", "REPLACE WITH SERVER IP"); //Server must run on port 3307
+define("USER", "REPLACE WITH USERNAME");
+define("PASSWORD", "REPLACE WITH USER'S PASSWORD");
+define("DATABASE", "REPLACE WITH DATABASE NAME");
