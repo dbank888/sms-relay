@@ -7,7 +7,14 @@ require_once "config.php";
 
 
 $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
+
+if(!$mysqli) {
+    error_log("Can't connect to Database");
+    exit(1);
+}
+
 $client = new Services_Twilio(ACCOUNT_SID, AUTH_TOKEN);
+
 
 $target = "ryan"; // temp set static target
 if($_REQUEST['To'] == US_NUMBER) {
@@ -25,7 +32,7 @@ if($_REQUEST['To'] == US_NUMBER) {
     
 if($result = $mysqli->query("SELECT ".$targetPhone." FROM users WHERE handle=".$target)) {
     $obj = $result->fetch_object();
-    $targetPhoneNumber = $obj[$targetPhone];
+    $targetPhoneNumber = "+".$obj[$targetPhone];
 } else {
     echo $mysqli->error;
     error_log($mysqli->error);
@@ -36,7 +43,7 @@ $mysqli->close();
 try {
     $message = $client->account->messages->create(array(
         "From" => $outboundNumber,
-        "To" => "+16785173393",
+        "To" => $targetPhoneNumber,
         "Body" => $_REQUEST['Body'],
     ));
 } catch (Services_Twilio_RestException $e) {
