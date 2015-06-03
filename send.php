@@ -29,8 +29,8 @@ if($_REQUEST['To'] == US_NUMBER) {
 
     
 if($result = $mysqli->query("SELECT ".$targetPhone." FROM users WHERE handle = '".$target."'")) {
-    $obj = $result->fetch_object();
-    $targetPhoneNumber = "+".$obj[$targetPhone];
+    $resultArray = $result->fetch_array();
+    $targetPhoneNumber = "+".$resultArray[$targetPhone];
 } else {
     echo $mysqli->error;
     error_log($mysqli->error);
