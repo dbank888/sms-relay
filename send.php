@@ -15,7 +15,7 @@ $client = new Services_Twilio(ACCOUNT_SID, AUTH_TOKEN);
 
 
 //$target = "ryan"; // temp set static target
-$message = $_REQUEST['Message'];
+$message = $_REQUEST['Body'];
 $target = ltrim(strtok($message, " "), "@");
 
 
